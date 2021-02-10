@@ -7,7 +7,7 @@ from src.typeDefs.measRecord import IMetricsDataRecord
 import os 
 from typing import List
 
-def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> List(IMetricsDataRecord):
+def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> List[IMetricsDataRecord]:
     
     targetDateStr = dt.datetime.strftime(tagetMonth , '%b_%Y')
     
