@@ -1,6 +1,7 @@
 import pandas as pd
 import json
-
+from src.typeDefs import IFileInfo
+from typing import List
 
 fileMappings: List[IFileInfo] = []
 
@@ -29,7 +30,6 @@ def loadFileMappings(filePath='config.xlsx', sheetname='files_info') -> List[IFi
 def getFileMappings() -> List[IFileInfo]:
     global fileMappings
     return fileMappings
-
 
 
 def getJsonConfig() -> dict:
