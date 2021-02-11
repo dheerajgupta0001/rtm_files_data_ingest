@@ -8,7 +8,7 @@ import os
 from typing import List
 from src.repos.measData.measDataRepo import MeasDataRepo
 
-def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> List[IMetricsDataRecord]:
+def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> bool:
 
     # get config details
     jsonConfig = getJsonConfig()
@@ -46,12 +46,6 @@ def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> List[IMetr
             print("State Hourly data insertion SUCCESSFUL for {}".format(sheet))
         else:
             print("State Hourly data insertion UNSUCCESSFUL for {}".format(sheet))
-
-    return stateHourlyRecords
-
-
-def getSheetData():
-    pass
-
+    return True
 
 
