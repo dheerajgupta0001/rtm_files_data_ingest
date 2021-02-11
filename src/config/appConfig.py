@@ -1,6 +1,6 @@
 import pandas as pd
 import json
-from src.typeDefs import IFileInfo
+from src.typeDefs.fileInfo import IFileInfo
 from typing import List
 
 fileMappings: List[IFileInfo] = []
