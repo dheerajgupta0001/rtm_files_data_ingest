@@ -8,11 +8,11 @@ import os
 from typing import List
 from src.repos.measData.measDataRepo import MeasDataRepo
 
-def getStatesHourlyData(fileInfo:IFileInfo,tagetMonth:dt.datetime) -> bool:
-
+# TODO delete this
+def getStatesHourlyData(fileInfo:IFileInfo,targetMonth:dt.datetime) -> bool:
     # get config details
     jsonConfig = getJsonConfig()
-    targetDateStr = dt.datetime.strftime(tagetMonth , '%b_%Y')
+    targetDateStr = dt.datetime.strftime(targetMonth , '%b_%Y')
     
     targetFilename = fileInfo['filename'].replace('{{dt}}', targetDateStr)
     targetFilePath = os.path.join(fileInfo['folder_location'], targetFilename)

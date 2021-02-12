@@ -1,14 +1,17 @@
 import pandas as pd
 import json
 from src.typeDefs.fileInfo import IFileInfo
+from src.typeDefs.stateConfig import IStateConfig
 from typing import List
 
 fileMappings: List[IFileInfo] = []
+stateConfigs: List[IStateConfig] = []
 
 jsonConfig: dict = {}
 
-def initConfig():
+def initConfigs():
     loadFileMappings()
+    loadStatesConfig()
     loadJsonConfig()
 
 def loadJsonConfig(fName="config.json") -> dict:
@@ -26,6 +29,11 @@ def loadFileMappings(filePath='config.xlsx', sheetname='files_info') -> List[IFi
     fileMappings = fileMappingsDf.to_dict('records')
     return fileMappings
 
+def loadStatesConfig(filePath='config.xlsx', sheetname='states') -> List[IStateConfig]:
+    global stateConfigs
+    stateConfigsDf = pd.read_excel(filePath, sheet_name=sheetname)
+    stateConfigs = stateConfigsDf.to_dict('records')
+    return stateConfigs
 
 def getFileMappings() -> List[IFileInfo]:
     global fileMappings
@@ -35,3 +43,7 @@ def getFileMappings() -> List[IFileInfo]:
 def getJsonConfig() -> dict:
     global jsonConfig
     return jsonConfig
+
+def getStateConfigs() -> dict:
+    global stateConfigs
+    return stateConfigs
