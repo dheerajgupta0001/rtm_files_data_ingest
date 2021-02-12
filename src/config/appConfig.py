@@ -44,6 +44,6 @@ def getJsonConfig() -> dict:
     global jsonConfig
     return jsonConfig
 
-def getStateConfigs() -> dict:
+def getStateConfigs() -> List[IStateConfig]:
     global stateConfigs
     return stateConfigs
