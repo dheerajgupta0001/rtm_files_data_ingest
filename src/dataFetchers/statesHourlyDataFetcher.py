@@ -13,7 +13,11 @@ def getStatesHourlyData(statesConfigSheet: List[IStateConfig], targetFilePath: s
    
     for eachRow in statesConfigSheet:
         sheetName = eachRow['sheet_hourly_data']
-    
+
+        # check if sheetname is not nan
+        if pd.isna(sheetName):
+            continue
+        
         dataSheetDf = pd.read_excel(
             targetFilePath, sheet_name=sheetName, skiprows=1)
         # make timestamp
