@@ -6,18 +6,6 @@ from src.typeDefs.measRecord import IMetricsDataRecord
 from typing import List
 
 
-<<<<<<< HEAD
-def getStatesHourlyData(statesConfig: List[IStateConfig], targetFilePath: str) -> bool:
-    dataDf = pd.read_excel(targetFilePath)
-
-    records: List[IMetricsDataRecord] = []
-    for sConfig in statesConfig:
-        sheet = sConfig['sheet_hourly_data']
-        
-        # getSheetData(sheet)
-        dataSheeetDf = pd.read_excel(
-            targetFilePath, sheet_name=sheet, skiprows=1)
-=======
 def getStatesHourlyData(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[List]:
 
     allStatesRecords = []
@@ -32,7 +20,6 @@ def getStatesHourlyData(statesConfigSheet: List[IStateConfig], targetFilePath: s
         
         dataSheetDf = pd.read_excel(
             targetFilePath, sheet_name=sheetName, skiprows=1)
->>>>>>> d8ff720006d1aef0e742837879c1577d1f81c049
         # make timestamp
         dataSheetDf['Hours'] = dataSheetDf['Hours'] - 1
         dataSheetDf['Date'] += pd.to_timedelta(dataSheetDf.Hours, unit='h')

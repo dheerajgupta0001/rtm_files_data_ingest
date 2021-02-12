@@ -1,10 +1,10 @@
 from typing_extensions import final
 import cx_Oracle
 from typing import List
-from src.typeDefs.measRecord import IMetricsDataRecord
+from src.typeDefs.stateslinesMeasRecord import IGenLineDataRecord
 
 
-def insertGenLinesDailyMetricsData(appDbConnStr: str, dataSamples: List[IMetricsDataRecord]) -> bool:
+def insertGenLinesDailyMetricsData(appDbConnStr: str, dataSamples: List[IGenLineDataRecord]) -> bool:
     """Inserts a entity metrics time series data into the app db
 
     Args:
@@ -23,8 +23,8 @@ def insertGenLinesDailyMetricsData(appDbConnStr: str, dataSamples: List[IMetrics
         dbConn = cx_Oracle.connect(appDbConnStr)
         dbCur = dbConn.cursor()
         # keyNames names of the raw data
-        keyNames = ['data_time', 'entity_tag', 'metric_name', 'data_val']
-        colsNames = ["TIME_STAMP","entity_tag","metric_name","data_value"]
+        keyNames = ['data_time', 'entity_tag', 'generator_tag', 'data_val']
+        colsNames = ["TIME_STAMP", "entity_tag","generator_tag","data_value"]
         sqlPlaceHldrsTxt = ','.join([':{0}'.format(x+1)
                                      for x in range(len(colsNames))])
         # delete the rows which are already present

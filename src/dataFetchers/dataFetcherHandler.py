@@ -1,10 +1,12 @@
 from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
 from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
+from src.dataFetchers.linesGenDailyDataFetcher import getGenLinesDailyData
 from src.typeDefs.fileInfo import IFileInfo
 from src.typeDefs.stateConfig import IStateConfig
 import datetime as dt
 from typing import List
 from src.typeDefs.measRecord import IMetricsDataRecord
+from src.typeDefs.stateslinesMeasRecord import IGenLineDataRecord
 import os
 
 def getExcelFilePath(fileInfo:IFileInfo, targetMonth:dt.datetime) -> str:
@@ -21,3 +23,6 @@ def statesHourlyDataFetcherHandler(statesConfigSheet: List[IStateConfig], target
 
 def statesDailyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
     return getStatesDailyData(statesConfigSheet, targetFilePath)
+
+def linesGenDataFetcherHandler(statesConfigSheet:List[IStateConfig], targetFilePath: str) -> List[IGenLineDataRecord]:
+    return getGenLinesDailyData(statesConfigSheet , targetFilePath)
