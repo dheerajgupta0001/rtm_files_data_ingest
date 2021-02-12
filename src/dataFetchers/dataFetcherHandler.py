@@ -15,7 +15,6 @@ def getExcelFilePath(fileInfo:IFileInfo, targetMonth:dt.datetime) -> str:
     
     targetFilename = fileInfo['filename'].replace('{{dt}}', targetDateStr)
     targetFilePath = os.path.join(fileInfo['folder_location'], targetFilename)
-    
     return targetFilePath
 
 def statesHourlyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:

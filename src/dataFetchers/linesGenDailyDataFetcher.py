@@ -12,35 +12,43 @@ def getGenLinesDailyData(statesConfigSheet: List[IStateConfig], targetFilePath: 
     genLineDailyRecords: List[IGenLineDataRecord] = []
    
     for eachRow in statesConfigSheet:
-        sheetName = eachRow['gen_lines_daily_data']
+        sheetName = eachRow['sheet_gen_data']
         
         # check if sheetname is not nan
         if pd.isna(sheetName):
             continue
         
-        if sheetName == 'ir_regionwise_sch_act':
-            dataSheeetDf = pd.read_excel(targetFilePath, sheet_name=sheetName, skiprows=1, header=[0,1])
+        if sheetName == 'IR Regionwise Sch Act':
+            dataSheeetDf = pd.read_excel(targetFilePath, sheet_name=sheetName, skiprows=0, header=[0,1])
             dataSheeetDf.columns = ['_'.join(x) for x in dataSheeetDf.columns]
-
+            dataSheeetDf = pd.melt(dataSheeetDf, id_vars=['Date_Date'])
+            dataSheeetDf = dataSheeetDf.rename(columns={
+                            'variable': 'generator_tag', 'value': 'data_val',
+                            'Date_Date': 'data_time'})
+            dataSheeetDf['entity_tag'] = eachRow['name']
+            dataSheeetDf = dataSheeetDf.rename(columns={
+            'variable': 'metric_name', 'value': 'data_val',
+            'Date': 'data_time'})
+            dataSheeetDf['data_val'].fillna(0, inplace=True)
 
         else:
             # getSheetData(sheet)
-            dataSheeetDf = pd.read_excel(targetFilePath, sheet_name=sheetName, skiprows=1)
+            dataSheeetDf = pd.read_excel(targetFilePath, sheet_name=sheetName, skiprows=0)
             dataSheeetDf = pd.melt(dataSheeetDf, id_vars=['Date'])
             dataSheeetDf = dataSheeetDf.rename(columns={
-                            'variable': 'metric_name', 'value': 'data_val',
+                            'variable': 'generator_tag', 'value': 'data_val',
                             'Date': 'data_time'})
-
-        dataSheetDf = pd.read_excel(
-            targetFilePath, sheet_name=sheetName, skiprows=1)
-        dataSheetDf = pd.melt(dataSheetDf, id_vars=['Date'])
-        dataSheetDf['entity_tag'] = eachRow['name']
-        dataSheetDf = dataSheetDf.rename(columns={
+            dataSheeetDf['entity_tag'] = eachRow['name']
+            dataSheeetDf = dataSheeetDf.rename(columns={
             'variable': 'metric_name', 'value': 'data_val',
             'Date': 'data_time'})
-        dataSheetDf['data_val'].fillna(0, inplace=True)
-        # convert dataframe to list of dictionaries
-        stateDailyRecords = dataSheetDf.to_dict('records')
-        allStatesRecords.append(stateDailyRecords)
+            dataSheeetDf['data_val'].fillna(0, inplace=True)
+        # dataSheetDf = pd.read_excel(
+        #     targetFilePath, sheet_name=sheetName, skiprows=1)
+        # dataSheetDf = pd.melt(dataSheetDf, id_vars=['Date'])
         
-    return allStatesRecords
+        # convert dataframe to list of dictionaries
+        genLineDailyRecords = dataSheeetDf.to_dict('records')
+        allGenLinesRecords.append(genLineDailyRecords)
+        
+    return allGenLinesRecords
