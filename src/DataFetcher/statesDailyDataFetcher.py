@@ -8,6 +8,7 @@ import os
 from typing import List
 from src.repos.measData.measDataRepo import MeasDataRepo
 
+# TODO delete this
 def getStatesDailyData(fileInfo:IFileInfo,tagetMonth:dt.datetime, noOfRowsToSkip= int) -> bool:
 
     # get config details
