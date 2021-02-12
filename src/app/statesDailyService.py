@@ -1,10 +1,8 @@
 from src.config.appConfig import initConfigs
-from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
 from src.config.appConfig import getFileMappings, getJsonConfig , getStateConfigs
-from src.dataFetchers.dataFetcher import statesDailyDataFetcher #right
+from src.dataFetchers.dataFetcher import statesDailyDataFetcher 
 from src.typeDefs.stateConfig import IStateConfig
 from src.repos.measData.measDataRepo import MeasDataRepo
-import datetime as dt
 from typing import List
 
 initConfigs()

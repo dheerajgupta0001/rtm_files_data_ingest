@@ -11,9 +11,6 @@ statesConfigSheet = getStateConfigs()
 
 targetMonth = dt.datetime(2021,1,1) 
 
-# derive file path for hourly, then call service
-
-# derive file path for daily
 
 for eachrow in filesSheet:
     print(eachrow['file_type'])
