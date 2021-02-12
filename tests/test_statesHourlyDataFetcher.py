@@ -9,3 +9,4 @@ class TestGetStateHourlyData(unittest.TestCase):
         statesData = getStatesHourlyData()
         self.assertTrue(statesData is not None)
         self.assertFalse(len(fileMappings) == 0)
+        
