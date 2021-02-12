@@ -1,13 +1,11 @@
 from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
 from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
-from src.config.appConfig import getFileMappings, getJsonConfig
 from src.typeDefs.fileInfo import IFileInfo
 from src.typeDefs.stateConfig import IStateConfig
 import datetime as dt
 from typing import List
 from src.typeDefs.measRecord import IMetricsDataRecord
 import os
-from src.config.appConfig import getFileMappings
 
 def getExcelFilePath(fileInfo:IFileInfo, targetMonth:dt.datetime) -> str:
     
