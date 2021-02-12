@@ -16,8 +16,8 @@ def getExcelFilePath(fileInfo:IFileInfo, targetMonth:dt.datetime) -> str:
     
     return targetFilePath
 
-def statesHourlyDataFetcher(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
+def statesHourlyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
     return getStatesHourlyData(statesConfigSheet, targetFilePath)
 
-def statesDailyDataFetcher(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
+def statesDailyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
     return getStatesDailyData(statesConfigSheet, targetFilePath)

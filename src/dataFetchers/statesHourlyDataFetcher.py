@@ -25,7 +25,11 @@ def getStatesHourlyData(statesConfigSheet: List[IStateConfig], targetFilePath: s
    
     for eachRow in statesConfigSheet:
         sheetName = eachRow['sheet_hourly_data']
-    
+
+        # check if sheetname is not nan
+        if pd.isna(sheetName):
+            continue
+        
         dataSheetDf = pd.read_excel(
             targetFilePath, sheet_name=sheetName, skiprows=1)
 >>>>>>> d8ff720006d1aef0e742837879c1577d1f81c049

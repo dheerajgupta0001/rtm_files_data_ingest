@@ -1,6 +1,6 @@
 from src.config.appConfig import initConfigs
 from src.config.appConfig import getFileMappings, getJsonConfig , getStateConfigs
-from src.dataFetchers.dataFetcher import statesHourlyDataFetcher
+from src.dataFetchers.dataFetcherHandler import statesHourlyDataFetcherHandler
 from src.typeDefs.stateConfig import IStateConfig
 from src.repos.measData.measDataRepo import MeasDataRepo
 from typing import List
@@ -10,7 +10,7 @@ filesSheet = getFileMappings()
 stateConfigSheet = getStateConfigs()
 
 def statesHourlyService(stateConfigSheet :List[IStateConfig], excelFilePath):
-    stateHourlyRecords = statesHourlyDataFetcher(stateConfigSheet, excelFilePath)
+    stateHourlyRecords = statesHourlyDataFetcherHandler(stateConfigSheet, excelFilePath)
     measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
     for each in stateHourlyRecords:

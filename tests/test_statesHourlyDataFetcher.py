@@ -3,7 +3,7 @@ from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
 
 
 class TestGetStateHourlyData(unittest.TestCase):
-    def test_stateHourlyData(self) -> None:
+    def test_statesHourlyData(self) -> None:
         """tests the function that tests file mappings config
         """
         statesData = getStatesHourlyData()

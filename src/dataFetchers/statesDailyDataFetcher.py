@@ -12,7 +12,11 @@ def getStatesDailyData(statesConfigSheet: List[IStateConfig], targetFilePath: st
    
     for eachRow in statesConfigSheet:
         sheetName = eachRow['sheet_daily_data']
-    
+        
+        # check if sheetname is not nan
+        if pd.isna(sheetName):
+            continue
+        
         dataSheetDf = pd.read_excel(
             targetFilePath, sheet_name=sheetName, skiprows=1)
         dataSheetDf = pd.melt(dataSheetDf, id_vars=['Date'])
