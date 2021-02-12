@@ -26,9 +26,6 @@ def getGenLinesDailyData(statesConfigSheet: List[IStateConfig], targetFilePath: 
                             'variable': 'generator_tag', 'value': 'data_val',
                             'Date_Date': 'data_time'})
             dataSheeetDf['entity_tag'] = eachRow['name']
-            dataSheeetDf = dataSheeetDf.rename(columns={
-            'variable': 'metric_name', 'value': 'data_val',
-            'Date': 'data_time'})
             dataSheeetDf['data_val'].fillna(0, inplace=True)
 
         else:
@@ -39,13 +36,7 @@ def getGenLinesDailyData(statesConfigSheet: List[IStateConfig], targetFilePath: 
                             'variable': 'generator_tag', 'value': 'data_val',
                             'Date': 'data_time'})
             dataSheeetDf['entity_tag'] = eachRow['name']
-            dataSheeetDf = dataSheeetDf.rename(columns={
-            'variable': 'metric_name', 'value': 'data_val',
-            'Date': 'data_time'})
             dataSheeetDf['data_val'].fillna(0, inplace=True)
-        # dataSheetDf = pd.read_excel(
-        #     targetFilePath, sheet_name=sheetName, skiprows=1)
-        # dataSheetDf = pd.melt(dataSheetDf, id_vars=['Date'])
         
         # convert dataframe to list of dictionaries
         genLineDailyRecords = dataSheeetDf.to_dict('records')
