@@ -1,9 +1,25 @@
-from src.DataFetcher.statesHourlyDataFetcher import getStatesHourlyData
+from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
+from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
+from src.config.appConfig import getFileMappings, getJsonConfig
 from src.typeDefs.fileInfo import IFileInfo
+from src.typeDefs.stateConfig import IStateConfig
 import datetime as dt
+from typing import List
+from src.typeDefs.measRecord import IMetricsDataRecord
+import os
 from src.config.appConfig import getFileMappings
 
-# TODO delete this
-def getStatesHourlyData(fileInfo:IFileInfo, targetMonth:dt.datetime):
+def getExcelFilePath(fileInfo:IFileInfo, targetMonth:dt.datetime) -> str:
     
-    return getStatesHourlyData(fileInfo , targetMonth)
+    targetDateStr = dt.datetime.strftime(targetMonth , fileInfo['format'])
+    
+    targetFilename = fileInfo['filename'].replace('{{dt}}', targetDateStr)
+    targetFilePath = os.path.join(fileInfo['folder_location'], targetFilename)
+    
+    return targetFilePath
+
+def statesHourlyDataFetcher(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
+    return getStatesHourlyData(statesConfigSheet, targetFilePath)
+
+def statesDailyDataFetcher(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
+    return getStatesDailyData(statesConfigSheet, targetFilePath)

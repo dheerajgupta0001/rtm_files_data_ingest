@@ -9,4 +9,8 @@ class TestGetStateHourlyData(unittest.TestCase):
         statesData = getStatesHourlyData()
         self.assertTrue(statesData is not None)
         self.assertFalse(len(statesData) == 0)
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> d8ff720006d1aef0e742837879c1577d1f81c049
