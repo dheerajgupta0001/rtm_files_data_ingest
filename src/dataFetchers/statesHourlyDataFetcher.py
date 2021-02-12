@@ -10,13 +10,12 @@ from src.repos.measData.measDataRepo import MeasDataRepo
 
 
 def getStatesHourlyData(statesConfig: List[IStateConfig], targetFilePath: str) -> bool:
-    dataDf = pd.ExcelFile(targetFilePath)
-    sheetNames = dataDf.sheet_names
+    dataDf = pd.read_excel(targetFilePath)
 
     records: List[IMetricsDataRecord] = []
     for sConfig in statesConfig:
         sheet = sConfig['sheet_hourly_data']
-        print(sheet)
+        
         # getSheetData(sheet)
         dataSheeetDf = pd.read_excel(
             targetFilePath, sheet_name=sheet, skiprows=1)
