@@ -11,7 +11,7 @@ def statesHourlyService(stateConfigSheet: List[IStateConfig], excelFilePath):
     measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
     for each in stateHourlyRecords:
-        isRawCreationSuccess = measDataRepo.insertStatesHorlyData(each)
+        isRawCreationSuccess = measDataRepo.insertStatesHourlyData(each)
         if isRawCreationSuccess:
             print("State Hourly data insertion SUCCESSFUL for {0}".format(
                 each[0]['entity_tag']))

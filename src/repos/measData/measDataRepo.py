@@ -1,5 +1,4 @@
-import datetime
-from typing import List, Any
+from typing import List
 from src.typeDefs.measRecord import IMetricsDataRecord
 from src.typeDefs.freqRecord import IFreqDataRecord
 from src.typeDefs.voltRecord import IVoltDataRecord
@@ -10,6 +9,8 @@ from src.repos.measData.insertDaywiseFreqMetrics import insertDaywiseFreqMetrics
 from src.repos.measData.insertDaywiseVoltMetrics import insertDaywiseVoltMetrics
 
 from src.repos.measData.insertReservoirDailyMetricsData import insertReservoirDailyMetricsData
+from src.repos.measData.insertGujREDailyMetricsData import insertGujREDailyMetricData
+
 
 class MeasDataRepo():
     """Repository class for entity metrics data
@@ -23,7 +24,7 @@ class MeasDataRepo():
         """
         self.appDbConnStr = dbConStr
 
-    def insertStatesHorlyData(self, dataSamples: List[IMetricsDataRecord]) -> bool:
+    def insertStatesHourlyData(self, dataSamples: List[IMetricsDataRecord]) -> bool:
         """inserts a entity metrics time series data into the app db
         Returns:
             bool: returns true if process is ok
@@ -58,9 +59,16 @@ class MeasDataRepo():
         """
         return insertDaywiseVoltMetrics(self.appDbConnStr, dataSamples)
 
-    def insertReservoirDailyData(self, dataSamples:List[IMetricsDataRecord]) -> bool:
+    def insertReservoirDailyData(self, dataSamples: List[IMetricsDataRecord]) -> bool:
         """inserts a entity metrics time series data into the app db
         Returns:
             bool: returns true if process is ok
         """
         return insertReservoirDailyMetricsData(self.appDbConnStr, dataSamples)
+
+    def insertGujREDailyData(self, dataSamples: List[IMetricsDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertGujREDailyMetricData(self.appDbConnStr, dataSamples)

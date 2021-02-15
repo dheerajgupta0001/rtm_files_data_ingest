@@ -24,7 +24,7 @@ for each in stateHourlyRecords:
     isRawCreationSuccess = False
     print(each)
     break
-    isRawCreationSuccess = measDataRepo.insertStatesHorlyData(each)
+    isRawCreationSuccess = measDataRepo.insertStatesHourlyData(each)
     if isRawCreationSuccess:
         print("State Hourly data insertion SUCCESSFUL for")
     else:
