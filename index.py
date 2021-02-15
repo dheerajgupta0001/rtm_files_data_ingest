@@ -1,32 +1,37 @@
 from src.config.appConfig import initConfigs
-# from src.DataFetcher.statesHourlyDataFetcher import getStatesHourlyData
-from src.dataFetchers.dataFetcher import getExcelFilePath
-from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
-# from src.DataFetcher.statesDailyDataFetcher import getStatesDailyData
-# from src.DataFetcher.linesGenDailyDataFetcher import getGenLinesDailyData
-from src.config.appConfig import getFileMappings, getJsonConfig , getStateConfigs
-from src.dataFetchers.dataFetcher import statesHourlyDataFetcher
-from src.repos.measData.measDataRepo import MeasDataRepo
+from src.config.appConfig import getStateConfigs, getFileMappings
+from src.app.statesHourlyService import statesHourlyService
+from src.app.statesDailyService import statesDailyService
+from src.app.freqDailyService import freqDailyService
+from src.dataFetchers.dataFetcherHandler import getExcelFilePath
+from src.app.linesGenService import linesGenService
+from src.app.voltDailyService import voltDailyService
+from src.app.reservoirService import reservoirService
+from src.app.gujREGenerationService import gujREGenerationService
 import datetime as dt
-from typing import List
 
 initConfigs()
 filesSheet = getFileMappings()
-stateConfigSheet = getStateConfigs()
+statesConfigSheet = getStateConfigs()
 
-#for current we are calling filesSheet[0] to get sfirst entry later we will use a loop for each file
+targetMonth = dt.datetime(2021, 1, 1)
 
-stateHourlyRecords = statesHourlyDataFetcher(stateConfigSheet ,getExcelFilePath(filesSheet[0] ,dt.datetime(2021,1,1) ) )
-# get the instance of state Hourly metrics data storage repository
-measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
-for each in stateHourlyRecords:
-    isRawCreationSuccess = False
-    print(each)
-    break
-    isRawCreationSuccess = measDataRepo.insertStatesHourlyData(each)
-    if isRawCreationSuccess:
-        print("State Hourly data insertion SUCCESSFUL for")
-    else:
-        print("State Hourly data insertion UNSUCCESSFUL for")
-
+for eachrow in filesSheet:
+    print(eachrow['file_type'])
+    excelFilePath = getExcelFilePath(eachrow, targetMonth)
+    if eachrow['file_type'] == 'state_hourly_data':
+        statesHourlyService(statesConfigSheet, excelFilePath)
+    if eachrow['file_type'] == 'state_daily_data':
+        statesDailyService(statesConfigSheet, excelFilePath)
+    if eachrow['file_type'] == 'gen_lines_daily_data':
+        linesGenService(statesConfigSheet, excelFilePath)
+    if eachrow['file_type'] == 'freq_vol_data':
+        freqDailyService(excelFilePath)
+        voltDailyService(excelFilePath)
+    if eachrow['file_type'] == 'reservoir_data':
+        reservoirService(excelFilePath)
+    if eachrow['file_type'] == 'guj_RE_gen_daily_data':
+        targetMonth = dt.datetime(2021, 2, 1)
+        excelFilePath = getExcelFilePath(eachrow, targetMonth)
+        gujREGenerationService(excelFilePath)
