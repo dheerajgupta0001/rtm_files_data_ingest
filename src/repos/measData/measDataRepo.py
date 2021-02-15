@@ -9,6 +9,7 @@ from src.repos.measData.insertGenLinesDailyMetricsData import insertGenLinesDail
 from src.repos.measData.insertDaywiseFreqMetrics import insertDaywiseFreqMetrics
 from src.repos.measData.insertDaywiseVoltMetrics import insertDaywiseVoltMetrics
 
+from src.repos.measData.insertReservoirDailyMetricsData import insertReservoirDailyMetricsData
 
 class MeasDataRepo():
     """Repository class for entity metrics data
@@ -56,3 +57,10 @@ class MeasDataRepo():
             bool: returns true if process is ok
         """
         return insertDaywiseVoltMetrics(self.appDbConnStr, dataSamples)
+
+    def insertReservoirDailyData(self, dataSamples:List[IMetricsDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertReservoirDailyMetricsData(self.appDbConnStr, dataSamples)
