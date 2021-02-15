@@ -2,16 +2,19 @@ import pandas as pd
 import json
 from src.typeDefs.fileInfo import IFileInfo
 from src.typeDefs.stateConfig import IStateConfig
+from src.typeDefs.freqVoltConfig import IFreqVoltConfig
 from typing import List
 
 fileMappings: List[IFileInfo] = []
 stateConfigs: List[IStateConfig] = []
+freqVolConfigs: List[IFreqVoltConfig] = []
 
 jsonConfig: dict = {}
 
 def initConfigs():
     loadFileMappings()
     loadStatesConfig()
+    loadFreqVoltConfigs()
     loadJsonConfig()
 
 def loadJsonConfig(fName="config.json") -> dict:
@@ -35,6 +38,12 @@ def loadStatesConfig(filePath='config.xlsx', sheetname='states') -> List[IStateC
     stateConfigs = stateConfigsDf.to_dict('records')
     return stateConfigs
 
+def loadFreqVoltConfigs(filePath='config.xlsx', sheetname='freq_volt') -> List[IFreqVoltConfig]:
+    global freqVolConfigs
+    freqVolConfigDf = pd.read_excel(filePath, sheet_name=sheetname)
+    freqVolConfigs = freqVolConfigDf.to_dict('records')
+    return freqVolConfigs
+
 def getFileMappings() -> List[IFileInfo]:
     global fileMappings
     return fileMappings
@@ -47,3 +56,7 @@ def getJsonConfig() -> dict:
 def getStateConfigs() -> List[IStateConfig]:
     global stateConfigs
     return stateConfigs
+
+def getFreqVoltConfigs() -> List[IFreqVoltConfig]:
+    global freqVolConfigs
+    return freqVolConfigs

@@ -1,8 +1,11 @@
 from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
 from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
 from src.dataFetchers.linesGenDailyDataFetcher import getGenLinesDailyData
+from src.dataFetchers.freqDataFetcher import getFreqData
 from src.typeDefs.fileInfo import IFileInfo
 from src.typeDefs.stateConfig import IStateConfig
+from src.typeDefs.freqVoltConfig import IFreqVoltConfig
+from src.typeDefs.freqRecord import IFreqDataRecord
 import datetime as dt
 from typing import List
 from src.typeDefs.measRecord import IMetricsDataRecord
@@ -25,3 +28,6 @@ def statesDailyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetF
 
 def linesGenDataFetcherHandler(statesConfigSheet:List[IStateConfig], targetFilePath: str) -> List[IGenLineDataRecord]:
     return getGenLinesDailyData(statesConfigSheet , targetFilePath)
+
+def getFreqDataHandler(freqVoltConfigs: List[IFreqVoltConfig], targetFilePath: str) -> List[IFreqDataRecord]:
+    return getFreqData(freqVoltConfigs , targetFilePath)

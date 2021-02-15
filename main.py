@@ -1,7 +1,8 @@
 from src.config.appConfig import initConfigs
-from src.config.appConfig import getStateConfigs,getFileMappings
+from src.config.appConfig import getStateConfigs, getFileMappings
 from src.app.statesHourlyService import statesHourlyService
 from src.app.statesDailyService import statesDailyService
+from src.app.freqDailyService import freqDailyService
 from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 from src.app.linesGenService import linesGenService
 import datetime as dt
@@ -10,20 +11,21 @@ initConfigs()
 filesSheet = getFileMappings()
 statesConfigSheet = getStateConfigs()
 
-targetMonth = dt.datetime(2021,1,1) 
+targetMonth = dt.datetime(2021, 1, 1)
 
 
 for eachrow in filesSheet:
     print(eachrow['file_type'])
-    excelFilePath = getExcelFilePath(eachrow , targetMonth )
-    if eachrow['file_type'] == 'state_hourly_data':
-        # pass
-        statesHourlyService(statesConfigSheet , excelFilePath)
+    excelFilePath = getExcelFilePath(eachrow, targetMonth)
+    # if eachrow['file_type'] == 'state_hourly_data':
+    #     statesHourlyService(statesConfigSheet , excelFilePath)
 
-    elif eachrow['file_type'] == 'state_daily_data':
-        # pass
-        statesDailyService(statesConfigSheet , excelFilePath)
-    
-    elif eachrow['file_type'] == 'gen_lines_daily_data':
-        # linesGenService(statesConfigSheet , excelFilePath)
-        pass
+    # elif eachrow['file_type'] == 'state_daily_data':
+    #     statesDailyService(statesConfigSheet , excelFilePath)
+
+    # elif eachrow['file_type'] == 'gen_lines_daily_data':
+    #     linesGenService(statesConfigSheet , excelFilePath)
+    #     pass
+
+    if eachrow['file_type'] == 'freq_data':
+        freqDailyService(excelFilePath)
