@@ -17,13 +17,13 @@ for eachrow in filesSheet:
     print(eachrow['file_type'])
     excelFilePath = getExcelFilePath(eachrow , targetMonth )
     if eachrow['file_type'] == 'state_hourly_data':
-        pass
-        # statesHourlyService(statesConfigSheet , excelFilePath)
+        # pass
+        statesHourlyService(statesConfigSheet , excelFilePath)
 
     elif eachrow['file_type'] == 'state_daily_data':
-        pass
-        # statesDailyService(statesConfigSheet , excelFilePath)
+        # pass
+        statesDailyService(statesConfigSheet , excelFilePath)
     
     elif eachrow['file_type'] == 'gen_lines_daily_data':
-        linesGenService(statesConfigSheet , excelFilePath)
-    
+        # linesGenService(statesConfigSheet , excelFilePath)
+        pass

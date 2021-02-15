@@ -17,7 +17,7 @@ def statesDailyService(stateConfigSheet :List[IStateConfig], excelFilePath):
         isRawCreationSuccess = False
         # print(each)
         
-        isRawCreationSuccess = measDataRepo.insertStatesHorlyData(each)
+        isRawCreationSuccess = measDataRepo.insertStatesDailyData(each)
 
         if isRawCreationSuccess:
             print("State Daily data insertion SUCCESSFUL for {0}".format(each[0]['entity_tag']))
