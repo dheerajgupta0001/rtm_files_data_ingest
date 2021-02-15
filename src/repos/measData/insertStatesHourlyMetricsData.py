@@ -28,11 +28,11 @@ def insertMetricsData(appDbConnStr: str, dataSamples: List[IMetricsDataRecord]) 
         sqlPlaceHldrsTxt = ','.join([':{0}'.format(x+1)
                                      for x in range(len(colsNames))])
         # delete the rows which are already present
-        existingEntityRecords = [(x['data_time'], x['entity_tag'])
+        existingEntityRecords = [(x['data_time'], x['entity_tag'] , x['metric_name'])
                                 for x in dataSamples]
         dbCur.execute("ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
-                "delete from MIS_WAREHOUSE.STATE_FILES_DATA where TIME_STAMP=:0 and ENTITY_TAG=:1", existingEntityRecords)
+                "delete from MIS_WAREHOUSE.STATE_FILES_DATA where TIME_STAMP=:0 and ENTITY_TAG=:1 and METRIC_NAME=:2", existingEntityRecords)
         # insert the raw data
         sql_insert = "insert into MIS_WAREHOUSE.STATE_FILES_DATA({0}) values ({1})".format(
             ','.join(colsNames), sqlPlaceHldrsTxt)

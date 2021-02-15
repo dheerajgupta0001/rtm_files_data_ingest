@@ -5,6 +5,7 @@ from src.app.statesDailyService import statesDailyService
 from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 from src.app.linesGenService import linesGenService
 from src.app.reservoirService import reservoirService
+from src.app.gujREGenerationService import gujREGenerationService
 import datetime as dt
 
 initConfigs()
@@ -31,4 +32,11 @@ for eachrow in filesSheet:
 
     elif eachrow['file_type'] == 'reservoir_data':
         # reservoirService(excelFilePath)
+        pass
+
+    elif eachrow['file_type'] == 'guj_RE_gen_daily_data':
+        targetMonth = dt.datetime(2021,2,1) 
+        excelFilePath = getExcelFilePath(eachrow , targetMonth)
+
+        gujREGenerationService(excelFilePath)
         pass

@@ -2,6 +2,7 @@ from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
 from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
 from src.dataFetchers.linesGenDailyDataFetcher import getGenLinesDailyData
 from src.dataFetchers.reservoirDailyDataFetcher import getReservoirDailyData
+from src.dataFetchers.gujREDailyDataFetcher import getGujREGenerationData
 from src.typeDefs.fileInfo import IFileInfo
 from src.typeDefs.stateConfig import IStateConfig
 import datetime as dt
@@ -33,3 +34,6 @@ def linesGenDataFetcherHandler(statesConfigSheet:List[IStateConfig], targetFileP
     
 def reservoirDataFetcherHandler(targetFilePath: str) -> List[IReservoirDataRecord]:
     return getReservoirDailyData(targetFilePath)
+
+def gujREGenerationDataFetcherHandler(targetFilePath: str) -> List[List[IMetricsDataRecord]]:
+    return getGujREGenerationData(targetFilePath)
