@@ -5,6 +5,7 @@ from src.app.statesDailyService import statesDailyService
 from src.app.freqDailyService import freqDailyService
 from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 from src.app.linesGenService import linesGenService
+from src.app.voltDailyService import voltDailyService
 import datetime as dt
 
 initConfigs()
@@ -19,13 +20,10 @@ for eachrow in filesSheet:
     excelFilePath = getExcelFilePath(eachrow, targetMonth)
     # if eachrow['file_type'] == 'state_hourly_data':
     #     statesHourlyService(statesConfigSheet , excelFilePath)
-
     # elif eachrow['file_type'] == 'state_daily_data':
     #     statesDailyService(statesConfigSheet , excelFilePath)
-
     # elif eachrow['file_type'] == 'gen_lines_daily_data':
     #     linesGenService(statesConfigSheet , excelFilePath)
-    #     pass
-
-    if eachrow['file_type'] == 'freq_data':
-        freqDailyService(excelFilePath)
+    if eachrow['file_type'] == 'freq_vol_data':
+        # freqDailyService(excelFilePath)
+        voltDailyService(excelFilePath)

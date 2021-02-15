@@ -1,23 +1,23 @@
 import unittest
-from src.dataFetchers.freqDataFetcher import getFreqData
+from src.dataFetchers.voltageDailyFetcher import getDailyVoltData
 from src.config.appConfig import loadFreqVoltConfigs, loadFileMappings
 from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 import datetime as dt
 
 
 class TestFreqDataFetcher(unittest.TestCase):
-    def test_freqDailyDataFetch(self) -> None:
+    def test_voltDailyDataFetch(self) -> None:
         """tests the function that tests file mappings config
         """
         freqVoltConfigs = loadFreqVoltConfigs()
         fMappings = loadFileMappings()
-        freqFileMapping = {}
+        volFileMapping = {}
         for f in fMappings:
             if f['file_type'] == 'freq_vol_data':
-                freqFileMapping = f
+                volFileMapping = f
         targetMonth = dt.datetime(2021, 1, 1)
-        freqFilePath = getExcelFilePath(freqFileMapping, targetMonth)
-        freqRecords = getFreqData(freqVoltConfigs, freqFilePath)
-        print(freqRecords)
-        self.assertTrue(freqRecords is not None)
-        self.assertFalse(len(freqRecords) == 0)
+        voltFilePath = getExcelFilePath(volFileMapping, targetMonth)
+        voltRecords = getDailyVoltData(freqVoltConfigs, voltFilePath)
+        print(voltRecords)
+        self.assertTrue(voltRecords is not None)
+        self.assertFalse(len(voltRecords) == 0)

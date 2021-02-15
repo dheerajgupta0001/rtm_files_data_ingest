@@ -1,4 +1,4 @@
-from src.config.appConfig import getFileMappings, getFreqVoltConfigs, getJsonConfig, getFreqVoltConfigs
+from src.config.appConfig import getFreqVoltConfigs, getJsonConfig
 from src.dataFetchers.dataFetcherHandler import getFreqData
 from src.typeDefs.stateConfig import IStateConfig
 from src.repos.measData.measDataRepo import MeasDataRepo
@@ -12,7 +12,6 @@ def freqDailyService(freqFilePath):
     measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
     isRawCreationSuccess = measDataRepo.insertDaywiseFreqMetrics(freqRecords)
-
     if isRawCreationSuccess:
         print("Freq Daily data insertion SUCCESSFUL")
     else:
