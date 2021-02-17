@@ -32,7 +32,7 @@ def insertGenLinesDailyMetricsData(appDbConnStr: str, dataSamples: List[IGenLine
                                 for x in dataSamples]
         dbCur.execute("ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
-                "delete from MIS_WAREHOUSE.gen_lines_DAILY_DATA where TIME_STAMP=:0 and ENTITY_TAG=:1", existingEntityRecords)
+                "delete from MIS_WAREHOUSE.gen_lines_DAILY_DATA where TIME_STAMP=:1 and ENTITY_TAG=:2", existingEntityRecords)
         # insert the raw data
         sql_insert = "insert into MIS_WAREHOUSE.gen_lines_DAILY_DATA({0}) values ({1})".format(
             ','.join(colsNames), sqlPlaceHldrsTxt)

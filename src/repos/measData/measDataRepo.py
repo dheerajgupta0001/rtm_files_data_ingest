@@ -9,7 +9,6 @@ from src.repos.measData.insertDaywiseFreqMetrics import insertDaywiseFreqMetrics
 from src.repos.measData.insertDaywiseVoltMetrics import insertDaywiseVoltMetrics
 
 from src.repos.measData.insertReservoirDailyMetricsData import insertReservoirDailyMetricsData
-from src.repos.measData.insertGujREDailyMetricsData import insertGujREDailyMetricData
 
 
 class MeasDataRepo():

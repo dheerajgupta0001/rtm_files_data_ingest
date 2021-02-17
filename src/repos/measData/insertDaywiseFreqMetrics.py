@@ -32,7 +32,7 @@ def insertDaywiseFreqMetrics(appDbConnStr: str, dataSamples: List[IFreqDataRecor
                                 for x in dataSamples]
         dbCur.execute("ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
-                "delete from MIS_WAREHOUSE.DAILY_FREQ_METRICS where data_time=:0 and metric_name=:1", existingFreqRecords)
+                "delete from MIS_WAREHOUSE.DAILY_FREQ_METRICS where data_time=:1 and metric_name=:2", existingFreqRecords)
         # insert the raw data
         sql_insert = "insert into MIS_WAREHOUSE.DAILY_FREQ_METRICS({0}) values ({1})".format(
             ','.join(colsNames), sqlPlaceHldrsTxt)

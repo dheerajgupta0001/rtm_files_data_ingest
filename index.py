@@ -31,7 +31,6 @@ for eachrow in filesSheet:
         voltDailyService(excelFilePath)
     if eachrow['file_type'] == 'reservoir_data':
         reservoirService(excelFilePath)
-    if eachrow['file_type'] == 'guj_RE_gen_daily_data':
-        targetMonth = dt.datetime(2021, 2, 1)
-        excelFilePath = getExcelFilePath(eachrow, targetMonth)
-        gujREGenerationService(excelFilePath)
+    # if eachrow['file_type'] == 'guj_RE_gen_daily_data':
+    #     excelFilePath = getExcelFilePath(eachrow, targetMonth)
+    #     gujREGenerationService(excelFilePath)

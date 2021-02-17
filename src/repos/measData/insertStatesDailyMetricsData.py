@@ -33,7 +33,7 @@ def insertDailyMetricsData(appDbConnStr: str, dataSamples: List[IMetricsDataReco
         dbCur.execute(
             "ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
-            "delete from MIS_WAREHOUSE.STATE_FILES_DAILY_DATA where TIME_STAMP=:0 and ENTITY_TAG=:1 and METRIC_NAME=:2", existingEntityRecords)
+            "delete from MIS_WAREHOUSE.STATE_FILES_DAILY_DATA where TIME_STAMP=:1 and ENTITY_TAG=:2 and METRIC_NAME=:3", existingEntityRecords)
         # insert the raw data
         sql_insert = "insert into MIS_WAREHOUSE.STATE_FILES_DAILY_DATA({0}) values ({1})".format(
             ','.join(colsNames), sqlPlaceHldrsTxt)

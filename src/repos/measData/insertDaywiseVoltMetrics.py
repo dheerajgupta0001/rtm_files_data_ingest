@@ -35,7 +35,7 @@ def insertDaywiseVoltMetrics(appDbConnStr: str, dataSamples: List[IVoltDataRecor
         dbCur.execute(
             "ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
-            "delete from MIS_WAREHOUSE.DAILY_VOLT_METRICS where data_time=:0 and volt_level=:1 and entity_name=:2 and metric_name=:3", existingVoltRecords)
+            "delete from MIS_WAREHOUSE.DAILY_VOLT_METRICS where data_time=:1 and volt_level=:2 and entity_name=:3 and metric_name=:4", existingVoltRecords)
         # insert the raw data
         sql_insert = "insert into MIS_WAREHOUSE.DAILY_VOLT_METRICS({0}) values ({1})".format(
             ','.join(colsNames), sqlPlaceHldrsTxt)
