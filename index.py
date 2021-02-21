@@ -20,6 +20,7 @@ endMonth = dt.datetime(2021, 1, 1)
 
 targetMonth = startMonth
 while targetMonth <= endMonth:
+    print('processing for {0}'.format(targetMonth))
     for eachrow in filesSheet:
         print(eachrow['file_type'])
         excelFilePath = getExcelFilePath(eachrow, targetMonth)
