@@ -18,7 +18,6 @@ targetMonth = dt.datetime(2021, 1, 1)
 
 
 for eachrow in filesSheet:
-    print(eachrow['file_type'])
     excelFilePath = getExcelFilePath(eachrow, targetMonth)
     if eachrow['file_type'] == 'state_hourly_data':
         statesHourlyService(statesConfigSheet, excelFilePath)
@@ -31,6 +30,6 @@ for eachrow in filesSheet:
         voltDailyService(excelFilePath)
     if eachrow['file_type'] == 'reservoir_data':
         reservoirService(excelFilePath)
-    # if eachrow['file_type'] == 'guj_RE_gen_daily_data':
-    #     excelFilePath = getExcelFilePath(eachrow, targetMonth)
-    #     gujREGenerationService(excelFilePath)
+    if eachrow['file_type'] == 'guj_RE_gen_daily_data':
+        excelFilePath = getExcelFilePath(eachrow, targetMonth)
+        gujREGenerationService(excelFilePath)

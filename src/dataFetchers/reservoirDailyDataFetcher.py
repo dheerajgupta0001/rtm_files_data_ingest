@@ -11,8 +11,10 @@ def getReservoirDailyData(targetFilePath: str) -> List[List]:
     reservoirDailyRecords: List[IReservoirDataRecord] = []
 
     dataShtDf = pd.read_excel(
-        targetFilePath, sheet_name='SSP Gen 2020-21', header=[0, 1], skipfooter=365)
-    # remove 1st column from df
+        targetFilePath, sheet_name='SSP Gen 18-19', header=[0, 1])
+    # dataShtDf = pd.read_excel(
+        # targetFilePath, sheet_name='SSP Gen 2020-21', header=[0, 1])
+    # remove 1st column from df SSP Gen 18-19
     dataShtDf = dataShtDf.iloc[:, 1:]
     # dataShtDf.columns = ['_'.join(x) for x in dataShtDf.columns]
     dataShtDf = pd.melt(dataShtDf, id_vars=[dataShtDf.columns[0]])
