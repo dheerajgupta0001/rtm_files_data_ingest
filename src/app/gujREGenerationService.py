@@ -12,9 +12,9 @@ def gujREGenerationService(excelFilePath):
         isRawCreationSuccess = measDataRepo.insertStatesHourlyData(each)
 
         if isRawCreationSuccess:
-            print("Guj RE Daily data insertion SUCCESSFUL on {1}".format(each[0]['data_time']))
+            print("Guj RE Daily data insertion SUCCESSFUL on {0}".format(each[0]['data_time']))
         else:
-            print("Guj RE Daily data insertion UNSUCCESSFUL on {1}".format(each[0]['data_time']))
+            print("Guj RE Daily data insertion UNSUCCESSFUL on {0}".format(each[0]['data_time']))
 
 
     
