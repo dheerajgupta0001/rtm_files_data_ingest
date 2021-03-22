@@ -1,18 +1,8 @@
-from src.dataFetchers.statesHourlyDataFetcher import getStatesHourlyData
-from src.dataFetchers.statesDailyDataFetcher import getStatesDailyData
-from src.dataFetchers.linesGenDailyDataFetcher import getGenLinesDailyData
-from src.dataFetchers.freqDataFetcher import getFreqData
-from src.dataFetchers.reservoirDailyDataFetcher import getReservoirDailyData
-from src.dataFetchers.gujREDailyDataFetcher import getGujREGenerationData
+from src.dataFetchers.iexDamDataFetcher import getIexDamData
 from src.typeDefs.fileInfo import IFileInfo
-from src.typeDefs.stateConfig import IStateConfig
-from src.typeDefs.freqVoltConfig import IFreqVoltConfig
-from src.typeDefs.freqRecord import IFreqDataRecord
 import datetime as dt
 from typing import List
-from src.typeDefs.measRecord import IMetricsDataRecord
-from src.typeDefs.stateslinesMeasRecord import IGenLineDataRecord
-from src.typeDefs.reservoirMeasRecord import IReservoirDataRecord
+from src.typeDefs.iexDamRecord import IIexDamDataRecord
 import os
 import pandas as pd
 
@@ -28,24 +18,5 @@ def getExcelFilePath(fileInfo: IFileInfo, targetMonth: dt.datetime) -> str:
     return targetFilePath
 
 
-def statesHourlyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
-    return getStatesHourlyData(statesConfigSheet, targetFilePath)
-
-
-def statesDailyDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IMetricsDataRecord]:
-    return getStatesDailyData(statesConfigSheet, targetFilePath)
-
-
-def linesGenDataFetcherHandler(statesConfigSheet: List[IStateConfig], targetFilePath: str) -> List[IGenLineDataRecord]:
-    return getGenLinesDailyData(statesConfigSheet, targetFilePath)
-
-
-def getFreqDataHandler(freqVoltConfigs: List[IFreqVoltConfig], targetFilePath: str) -> List[IFreqDataRecord]:
-    return getFreqData(freqVoltConfigs, targetFilePath)
-
-
-def reservoirDataFetcherHandler(targetFilePath: str) -> List[IReservoirDataRecord]:
-    return getReservoirDailyData(targetFilePath)
-
-def gujREGenerationDataFetcherHandler(targetFilePath: str) -> List[List[IMetricsDataRecord]]:
-    return getGujREGenerationData(targetFilePath)
+def getIexDamDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
+    return getIexDamData(targetFilePath)

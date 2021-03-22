@@ -1,41 +1,34 @@
 from src.config.appConfig import initConfigs
-from src.config.appConfig import getStateConfigs, getFileMappings
-from src.app.statesHourlyService import statesHourlyService
-from src.app.statesDailyService import statesDailyService
-from src.app.freqDailyService import freqDailyService
+from src.config.appConfig import getFileMappings
+from src.app.iexDamService import iexDamService
 from src.dataFetchers.dataFetcherHandler import getExcelFilePath
-from src.app.linesGenService import linesGenService
-from src.app.voltDailyService import voltDailyService
-from src.app.reservoirService import reservoirService
-from src.app.gujREGenerationService import gujREGenerationService
 from src.utils.addMonths import addMonths
 import datetime as dt
 
 initConfigs()
 filesSheet = getFileMappings()
-statesConfigSheet = getStateConfigs()
 
-startMonth = dt.datetime(2021, 1, 1)
-endMonth = dt.datetime(2021, 1, 1)
+startDt = dt.datetime(2021, 1, 1)
+endDt = dt.datetime(2021, 1, 1)
 
-targetMonth = startMonth
-while targetMonth <= endMonth:
-    print('processing for {0}'.format(targetMonth))
+targetDt = startDt
+while targetDt <= endDt:
+    print('processing for {0}'.format(targetDt))
     for eachrow in filesSheet:
         print(eachrow['file_type'])
-        excelFilePath = getExcelFilePath(eachrow, targetMonth)
-        if eachrow['file_type'] == 'state_hourly_data':
-            statesHourlyService(statesConfigSheet, excelFilePath)
-        if eachrow['file_type'] == 'state_daily_data':
-            statesDailyService(statesConfigSheet, excelFilePath)
-        if eachrow['file_type'] == 'gen_lines_daily_data':
-            linesGenService(statesConfigSheet, excelFilePath)
-        if eachrow['file_type'] == 'freq_vol_data':
-            freqDailyService(excelFilePath)
-            voltDailyService(excelFilePath)
-        if eachrow['file_type'] == 'reservoir_data':
-            reservoirService(excelFilePath)
-        if eachrow['file_type'] == 'guj_RE_gen_daily_data':
-            excelFilePath = getExcelFilePath(eachrow, targetMonth)
-            gujREGenerationService(excelFilePath)
-    targetMonth = addMonths(targetMonth, 1)
+        excelFilePath = getExcelFilePath(eachrow, targetDt)
+        if eachrow['file_type'] == 'iex_dam_data':
+            iexDamService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_rtm_data':
+        #     statesDailyService(statesConfigSheet, excelFilePath)
+        # if eachrow['file_type'] == 'iex_gtam_data':
+        #     linesGenService(statesConfigSheet, excelFilePath)
+        # if eachrow['file_type'] == 'pxi_dam_data':
+        #     statesHourlyService(statesConfigSheet, excelFilePath)
+        # if eachrow['file_type'] == 'pxi_rtm_data':
+        #     reservoirService(excelFilePath)
+        # if eachrow['file_type'] == 'wbes_rtm_iex_data':
+        #     gujREGenerationService(excelFilePath)
+        # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
+        #     gujREGenerationService(excelFilePath)
+    targetDt = addMonths(targetDt, 1)
