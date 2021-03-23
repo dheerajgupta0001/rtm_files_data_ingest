@@ -1,4 +1,5 @@
 from src.dataFetchers.iexDamDataFetcher import getIexDamData
+from src.dataFetchers.wbesRtmIexFetcher import getWbesRtmIexData
 from src.typeDefs.fileInfo import IFileInfo
 import datetime as dt
 from typing import List
@@ -20,3 +21,6 @@ def getExcelFilePath(fileInfo: IFileInfo, targetMonth: dt.datetime) -> str:
 
 def getIexDamDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getIexDamData(targetFilePath)
+
+def getWbesRtmIexDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
+    return getWbesRtmIexData(targetFilePath)
