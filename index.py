@@ -4,6 +4,12 @@ from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 from src.utils.addMonths import addMonths
 import datetime as dt
 from src.app.iexDamService import iexDamService
+from src.app.iexGtamService import iexGtamService
+from src.app.iexRtmService import iexRtmService
+from src.app.pxiDamService import pxiDamService
+from src.app.pxiRtmService import pxiRtmService
+
+
 from src.app.wbesRtmIexService import wbesRtmIexService
 
 initConfigs()
@@ -21,15 +27,15 @@ while targetDt <= endDt:
         # if eachrow['file_type'] == 'iex_dam_data':
         #     iexDamService(excelFilePath)
         # if eachrow['file_type'] == 'iex_rtm_data':
-        #     statesDailyService(statesConfigSheet, excelFilePath)
+        #     iexGtamService(excelFilePath)
         # if eachrow['file_type'] == 'iex_gtam_data':
-        #     linesGenService(statesConfigSheet, excelFilePath)
+        #     iexRtmService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_dam_data':
-        #     statesHourlyService(statesConfigSheet, excelFilePath)
+        #     pxiDamService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_rtm_data':
-        #     reservoirService(excelFilePath)
+        #     pxiRtmService(excelFilePath)
         if eachrow['file_type'] == 'wbes_rtm_iex_data':
             wbesRtmIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
-        #     gujREGenerationService(excelFilePath)
+        #     iexDamService(excelFilePath)
     targetDt = addMonths(targetDt, 1)
