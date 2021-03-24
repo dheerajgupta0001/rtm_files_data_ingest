@@ -2,9 +2,9 @@ import pandas as pd
 import datetime as dt
 from typing import Dict
 from typing import List
-from src.typeDefs.iexDamRecord import IIexDamDataRecord
+from src.typeDefs.pxiDamRecord import IPxiDamDataRecord
 
-def getPxiDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
+def getPxiDamData(targetFilePath: str) -> List[IPxiDamDataRecord]:
     dataSheetDf =pd.read_csv(targetFilePath)
     dataSheetDf=dataSheetDf.dropna(axis=1,how='all')
     dataSheetDf[['Hrs','Sec']]=dataSheetDf['Time Slot'].str.split('-',expand=True)

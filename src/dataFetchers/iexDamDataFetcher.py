@@ -12,9 +12,6 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
         targetFilePath, sheet_name="MarketMinute", skiprows= 5, nrows= 96)
     iexDamDf = iexDamDf.rename(columns={
         'Unnamed: 2': 'time_block', 'Date | Hour | Time Block': 'Date'})
-    # for itr in range(iexDamDf['None.1']):
-    #     iexDamDf[]
-    # del iexDamDf[None]
     iexDamDf = iexDamDf.drop(['Unnamed: 1', 'Unnamed: 4'], axis=1)
     iexDamDf = iexDamDf.loc[:, ~iexDamDf.columns.duplicated()]
     iexDamDf[['first_block','First','last_block']] = iexDamDf.time_block.str.split(" ",expand=True)

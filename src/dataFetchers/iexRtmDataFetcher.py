@@ -2,9 +2,9 @@ import pandas as pd
 import datetime as dt
 from typing import Dict
 from typing import List
-from src.typeDefs.iexDamRecord import IIexDamDataRecord
+from src.typeDefs.iexRtmRecord import IIexRtmDataRecord
 
-def getIexRtmData(targetFilePath: str) -> List[IIexDamDataRecord]:
+def getIexRtmData(targetFilePath: str) -> List[IIexRtmDataRecord]:
     dataSheetDf = pd.read_excel(targetFilePath, sheet_name="MarketMinute",skiprows=6,skipfooter=7)
     dataSheetDf=dataSheetDf.dropna(axis=1,how='all')
 
@@ -27,7 +27,3 @@ def getIexRtmData(targetFilePath: str) -> List[IIexDamDataRecord]:
     
     iexRtmRecords = dataSheetDf.to_dict('records')
     return iexRtmRecords
-
-
-    # print(dataSheetDf.dtypes)
-    # print(dataSheetDf)  
