@@ -3,6 +3,8 @@ import datetime as dt
 
 
 class IIexGtamDataRecord(TypedDict):
-    data_time: dt.datetime
+    date_time: dt.datetime
     metric_name: str
-    data_val: str
+    contract_type: str
+    instrument_name: str
+    data_val: float

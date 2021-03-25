@@ -38,7 +38,8 @@ def getWbesRtmIexData(targetFilePath: str, targetDt : dt.datetime) -> List[IWbes
         wbesRtmIexDf['Date'] = pd.to_datetime(wbesRtmIexDf[['year', 'month', 'day', 'hour', 'minute']])
         wbesRtmIexDf = wbesRtmIexDf.drop(['year', 'month', 'day', 'first_block',
                                 'last_block', 'hour','minute','Grand Total', 'time_block'], axis=1)
-        # print(wbesRtmIexDf)
+        print(wbesRtmIexDf)
+        wbesRtmIexDf = pd.melt(wbesRtmIexDf, id_vars=['Date'])
 
 
     wbesRtmIexRecord = wbesRtmIexDf.to_dict('records')
