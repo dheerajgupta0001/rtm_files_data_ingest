@@ -9,6 +9,7 @@ from src.app.iexRtmService import iexRtmService
 from src.app.pxiDamService import pxiDamService
 from src.app.pxiRtmService import pxiRtmService
 
+from src.app.wbesRtmPxiService import wbesRtmPxiService
 
 from src.app.wbesRtmIexService import wbesRtmIexService
 
@@ -37,5 +38,5 @@ while targetDt <= endDt:
         # if eachrow['file_type'] == 'wbes_rtm_iex_data':
         #     wbesRtmIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
-        #     iexDamService(excelFilePath)
+        #     wbesRtmPxiService(excelFilePath, targetDt)
     targetDt = addMonths(targetDt, 1)
