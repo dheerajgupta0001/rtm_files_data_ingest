@@ -3,6 +3,6 @@ import datetime as dt
 
 
 class IPxiDamDataRecord(TypedDict):
-    data_time: dt.datetime
+    date_time: dt.datetime
     metric_name: str
     data_val: str

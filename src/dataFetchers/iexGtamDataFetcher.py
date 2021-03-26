@@ -5,7 +5,6 @@ from typing import List
 from src.typeDefs.iexGtamRecord import IIexGtamDataRecord
 
 def getIexGtamData(targetFilePath: str) -> List[IIexGtamDataRecord]:
-
    
     dataSheetDf = pd.read_excel(targetFilePath, sheet_name="DateWiseTrade",skiprows=3)
     dataSheetDf=dataSheetDf.dropna(axis=1,how='all')
@@ -19,6 +18,7 @@ def getIexGtamData(targetFilePath: str) -> List[IIexGtamDataRecord]:
         if dataSheetDf['data_val'][i] == '--':
             dataSheetDf['data_val'][i] = 0
     dataSheetDf['data_val'] = dataSheetDf['data_val'].astype('float64')
+
     iexGtamRecords = dataSheetDf.to_dict('records') 
     return iexGtamRecords
 

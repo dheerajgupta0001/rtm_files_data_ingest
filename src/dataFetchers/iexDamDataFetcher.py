@@ -23,9 +23,10 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
     iexDamDf['Date'] = pd.to_datetime(iexDamDf[['year', 'month', 'day', 'hour', 'minute']])
     iexDamDf = iexDamDf.drop(['year', 'month', 'day', 'first_block','hour','minute'], axis=1)
     iexDamDf = pd.melt(iexDamDf, id_vars=['Date'])
-    # iexDamDf = iexDamDf.rename(columns={
-    #     'variable': 'metric_name', 'value': 'data_val',
-    #     'Date': 'data_time'})
+    iexDamDf = iexDamDf.rename(columns={'Date': 'date_time', 'value': 'data_val',
+                        'variable': 'metric_name'})
+    for i in range(len(iexDamDf)):
+        print(type(iexDamDf['data_val'][0]))
     iexDamRecords = iexDamDf.to_dict('records')
 
     return iexDamRecords
