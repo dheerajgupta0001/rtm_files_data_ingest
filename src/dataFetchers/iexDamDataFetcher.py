@@ -25,8 +25,9 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
     iexDamDf = pd.melt(iexDamDf, id_vars=['Date'])
     iexDamDf = iexDamDf.rename(columns={'Date': 'date_time', 'value': 'data_val',
                         'variable': 'metric_name'})
-    for i in range(len(iexDamDf)):
-        print(type(iexDamDf['data_val'][0]))
-    iexDamRecords = iexDamDf.to_dict('records')
-
+    iexDamDf['data_val'].fillna(0, inplace=True)
+    for i in range(len(iexDamDf['data_val'])):
+        if (type(iexDamDf['data_val'][i]) != float ) and (type(iexDamDf['data_val'][i]) != int ):
+            iexDamDf['data_val'][i] = 0
+    iexDamDf['data_val'] = iexDamDf['data_val'].astype('float64')
     return iexDamRecords
