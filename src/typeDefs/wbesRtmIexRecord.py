@@ -3,6 +3,7 @@ import datetime as dt
 
 
 class IWbesRtmIexDataRecord(TypedDict):
-    data_time: dt.datetime
-    metric_name: str
-    data_val: str
+    date_time: dt.datetime
+    beneficiary: str
+    beneficiary_type: str
+    data_val: float

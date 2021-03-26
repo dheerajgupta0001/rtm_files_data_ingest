@@ -3,6 +3,7 @@ from src.dataFetchers.iexGtamDataFetcher import getIexGtamData
 from src.dataFetchers.iexRtmDataFetcher import getIexRtmData
 from src.dataFetchers.pxiDamDataFetcher import getPxiDamData
 from src.dataFetchers.wbesRtmIexFetcher import getWbesRtmIexData
+from src.dataFetchers.wbesRtmPxiFetcher import getWbesRtmPxiData
 from src.dataFetchers.pxiRtmDataFetcher import getPxiRtmData
 
 from src.typeDefs.fileInfo import IFileInfo
@@ -41,3 +42,5 @@ def getIexRtmDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
 
 def getWbesRtmIexDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getWbesRtmIexData(targetFilePath)
+def getWbesRtmPxiDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
+    return getWbesRtmPxiData(targetFilePath)
