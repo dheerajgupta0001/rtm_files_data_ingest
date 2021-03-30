@@ -21,5 +21,11 @@ def getPxiRtmData(targetFilePath: str) -> List[IPxiRtmDataRecord]:
     dataSheetDf.drop(['Sec','Time Block','Hrs','Session ID','Hour'],axis=1,inplace=True)
     dataSheetDf = pd.melt(dataSheetDf, id_vars=['Delivery Date'])
     dataSheetDf = dataSheetDf.rename(columns={'variable': 'metric_name', 'value': 'data_val','Delivery Date': 'date_time'})
+    for i in range(len(dataSheetDf['data_val'])):
+        if (type(dataSheetDf['data_val'][i]) != float ) and (type(dataSheetDf['data_val'][i]) != int ):
+            dataSheetDf['data_val'][i] = 0
+    dataSheetDf['data_val'] = dataSheetDf['data_val'].astype('float64')
+    dataSheetDf = dataSheetDf.drop_duplicates(
+        subset=['date_time', 'metric_name'], keep='last', ignore_index=True)
     pxiRtmRecords = dataSheetDf.to_dict('records')
     return pxiRtmRecords

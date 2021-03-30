@@ -21,5 +21,10 @@ def getPxiDamData(targetFilePath: str) -> List[IPxiDamDataRecord]:
     dataSheetDf.drop(['Sec','Time Slot','Hrs'],axis=1,inplace=True)
     dataSheetDf = pd.melt(dataSheetDf, id_vars=['Delivery Date'])
     dataSheetDf = dataSheetDf.rename(columns={'variable': 'metric_name', 'value': 'data_val','Delivery Date': 'date_time'})
+    dataSheetDf['data_val'].fillna(0, inplace=True)
+    for i in range(len(dataSheetDf['data_val'])):
+        if (type(dataSheetDf['data_val'][i]) != float ) and (type(dataSheetDf['data_val'][i]) != int ):
+            dataSheetDf['data_val'][i] = 0
+    dataSheetDf['data_val'] = dataSheetDf['data_val'].astype('float64')
     pxiDamRecords = dataSheetDf.to_dict('records')
     return pxiDamRecords
