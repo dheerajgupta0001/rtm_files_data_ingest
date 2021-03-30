@@ -11,8 +11,8 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
     iexDamDf = pd.read_excel(
         targetFilePath, sheet_name="MarketMinute", skiprows= 5, nrows= 96)
     iexDamDf = iexDamDf.rename(columns={
-        'None.1': 'time_block', 'Date | Hour | Time Block': 'Date'})
-    iexDamDf = iexDamDf.drop([None, 'Unnamed: 4'], axis=1)
+        'Unnamed: 2': 'time_block', 'Date | Hour | Time Block': 'Date'})
+    iexDamDf = iexDamDf.drop(['Unnamed: 1', 'Unnamed: 4'], axis=1)
     iexDamDf = iexDamDf.loc[:, ~iexDamDf.columns.duplicated()]
     iexDamDf[['first_block','First','last_block']] = iexDamDf.time_block.str.split(" ",expand=True)
     # iexDamDf[['First','Last']] = iexDamDf.time_block.str.split(expand=True)
@@ -25,8 +25,8 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
     iexDamDf = pd.melt(iexDamDf, id_vars=['Date'])
     iexDamDf = iexDamDf.rename(columns={'Date': 'date_time', 'value': 'data_val',
                         'variable': 'metric_name'})
-    for i in range(len(iexDamDf)):
-        print(type(iexDamDf['data_val'][0]))
+    # for i in range(len(iexDamDf)):
+    #     print(type(iexDamDf['data_val'][0]))
     iexDamRecords = iexDamDf.to_dict('records')
 
     return iexDamRecords
