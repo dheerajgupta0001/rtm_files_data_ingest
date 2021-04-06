@@ -30,5 +30,5 @@ def getIexDamData(targetFilePath: str) -> List[IIexDamDataRecord]:
         if (type(iexDamDf['data_val'][i]) != float ) and (type(iexDamDf['data_val'][i]) != int ):
             iexDamDf['data_val'][i] = 0
     iexDamDf['data_val'] = iexDamDf['data_val'].astype('float64')
-    iexGtamRecords = iexDamDf.to_dict('records')
+    iexDamRecords = iexDamDf.to_dict('records')
     return iexDamRecords
