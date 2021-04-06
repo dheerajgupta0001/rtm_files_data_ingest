@@ -6,6 +6,8 @@ from src.typeDefs.pxiDamRecord import IPxiDamDataRecord
 
 def getPxiDamData(targetFilePath: str) -> List[IPxiDamDataRecord]:
     dataSheetDf =pd.read_csv(targetFilePath)
+    # dataSheetDf = pd.read_excel(targetFilePath)
+
     dataSheetDf=dataSheetDf.dropna(axis=1,how='all')
     dataSheetDf[['Hrs','Sec']]=dataSheetDf['Time Slot'].str.split('-',expand=True)
     dataSheetDf['Delivery Date'] = pd.to_datetime(dataSheetDf['Delivery Date'])
