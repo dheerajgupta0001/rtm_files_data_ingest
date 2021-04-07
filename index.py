@@ -19,13 +19,8 @@ from src.app.wbesPxPxiService import wbesPxPxiService
 initConfigs()
 filesSheet = getFileMappings()
 
-<<<<<<< HEAD
-startDt = dt.datetime(2021, 4, 4)
-endDt = dt.datetime(2021, 4, 5)
-=======
 startDt = dt.datetime(2021, 4, 6)
 endDt = dt.datetime(2021, 4, 6)
->>>>>>> d695a71708498d18e2ca9b631b65876517b46c84
 
 targetDt = startDt
 while targetDt <= endDt:
