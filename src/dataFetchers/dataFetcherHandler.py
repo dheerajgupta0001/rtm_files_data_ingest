@@ -5,6 +5,9 @@ from src.dataFetchers.pxiDamDataFetcher import getPxiDamData
 from src.dataFetchers.wbesRtmIexFetcher import getWbesRtmIexData
 from src.dataFetchers.wbesRtmPxiFetcher import getWbesRtmPxiData
 from src.dataFetchers.pxiRtmDataFetcher import getPxiRtmData
+from src.dataFetchers.wbesPxPxiFetcher import getWbesPxPxiData
+from src.dataFetchers.wbesPxIexFetcher import getWbesPxIexData
+
 
 from src.typeDefs.fileInfo import IFileInfo
 import datetime as dt
@@ -44,3 +47,7 @@ def getWbesRtmIexDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getWbesRtmIexData(targetFilePath)
 def getWbesRtmPxiDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getWbesRtmPxiData(targetFilePath)
+def getWbesPxPxiDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
+    return getWbesPxPxiData(targetFilePath)
+def getWbesPxIexDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
+    return getWbesPxIexData(targetFilePath)

@@ -12,12 +12,15 @@ from src.app.pxiRtmService import pxiRtmService
 from src.app.wbesRtmPxiService import wbesRtmPxiService
 
 from src.app.wbesRtmIexService import wbesRtmIexService
+from src.app.wbesPxIexService import wbesPxIexService
+from src.app.wbesPxPxiService import wbesPxPxiService
+
 
 initConfigs()
 filesSheet = getFileMappings()
 
-startDt = dt.datetime(2021, 4, 4)
-endDt = dt.datetime(2021, 4, 4)
+startDt = dt.datetime(2021, 4, 6)
+endDt = dt.datetime(2021, 4, 6)
 
 targetDt = startDt
 while targetDt <= endDt:
@@ -25,18 +28,24 @@ while targetDt <= endDt:
     for eachrow in filesSheet:
         print(eachrow['file_type'])
         excelFilePath = getExcelFilePath(eachrow, targetDt)
-        if eachrow['file_type'] == 'iex_dam_data':
-            iexDamService(excelFilePath)
-        if eachrow['file_type'] == 'iex_gtam_data':
-            iexGtamService(excelFilePath)
-        if eachrow['file_type'] == 'iex_rtm_data':
-            iexRtmService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_dam_data':
-            pxiDamService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_rtm_data':
-            pxiRtmService(excelFilePath)
-        if eachrow['file_type'] == 'wbes_rtm_iex_data':
-            wbesRtmIexService(excelFilePath, targetDt)
-        if eachrow['file_type'] == 'wbes_rtm_pxi_data':
-            wbesRtmPxiService(excelFilePath, targetDt)
+        # if eachrow['file_type'] == 'iex_dam_data':
+        #     iexDamService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_gtam_data':
+        #     iexGtamService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_rtm_data':
+        #     iexRtmService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_dam_data':
+        #     pxiDamService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_rtm_data':
+        #     pxiRtmService(excelFilePath)
+        # if eachrow['file_type'] == 'wbes_rtm_iex_data':
+        #     wbesRtmIexService(excelFilePath, targetDt)
+        # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
+        #     wbesRtmPxiService(excelFilePath, targetDt)
+        if eachrow['file_type'] == 'wbes_px_iex_data':
+            wbesPxIexService(excelFilePath, targetDt)
+        if eachrow['file_type'] == 'wbes_px_pxi_data':
+            wbesPxPxiService(excelFilePath, targetDt)
+       
+            
     targetDt = addMonths(targetDt, 1)
