@@ -12,12 +12,20 @@ from src.app.pxiRtmService import pxiRtmService
 from src.app.wbesRtmPxiService import wbesRtmPxiService
 
 from src.app.wbesRtmIexService import wbesRtmIexService
+from src.app.wbesPxIexService import wbesPxIexService
+from src.app.wbesPxPxiService import wbesPxPxiService
+
 
 initConfigs()
 filesSheet = getFileMappings()
 
+<<<<<<< HEAD
 startDt = dt.datetime(2021, 4, 4)
 endDt = dt.datetime(2021, 4, 5)
+=======
+startDt = dt.datetime(2021, 4, 6)
+endDt = dt.datetime(2021, 4, 6)
+>>>>>>> d695a71708498d18e2ca9b631b65876517b46c84
 
 targetDt = startDt
 while targetDt <= endDt:
@@ -39,4 +47,10 @@ while targetDt <= endDt:
             wbesRtmIexService(excelFilePath, targetDt)
         if eachrow['file_type'] == 'wbes_rtm_pxi_data':
             wbesRtmPxiService(excelFilePath, targetDt)
-    targetDt = targetDt + dt.timedelta(days=1)
+        if eachrow['file_type'] == 'wbes_px_iex_data':
+            wbesPxIexService(excelFilePath, targetDt)
+        if eachrow['file_type'] == 'wbes_px_pxi_data':
+            wbesPxPxiService(excelFilePath, targetDt)
+       
+            
+    targetDt = addMonths(targetDt, 1)

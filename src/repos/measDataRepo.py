@@ -7,6 +7,9 @@ from src.repos.insertPxiDamMetricData import insertPxiDamData
 from src.repos.insertPxiRtmMetricData import insertPxiRtmData
 from src.repos.insertWbesRtmIexMetricData import insertWbesRtmIexData
 from src.repos.insertWbesRtmPxiMetricData import insertWbesRtmPxiData
+from src.repos.insertWbesPxPxiMetricData import insertWbesPxPxiData
+from src.repos.insertWbesPxIexMetricData import insertWbesPxIexData
+
 
 
 class MeasDataRepo():
@@ -69,3 +72,15 @@ class MeasDataRepo():
             bool: returns true if process is ok
         """
         return insertWbesRtmPxiData(self.appDbConnStr, dataSamples)
+    def insertWbesPxPxiData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertWbesPxPxiData(self.appDbConnStr, dataSamples)
+    def insertWbesPxIexData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertWbesPxIexData(self.appDbConnStr, dataSamples)
