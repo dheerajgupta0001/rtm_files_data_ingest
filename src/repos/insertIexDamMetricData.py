@@ -31,7 +31,7 @@ def insertIexDamData(appDbConnStr: str, dataSamples: List[IIexDamDataRecord]) ->
         existingEntityRecords = [(x['date_time'], x['metric_name'])
                                  for x in dataSamples]
         dbCur.execute(
-            "ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MM-YYYY HH24:MI:SS' ")
+            "ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS' ")
         dbCur.executemany(
             "delete from MO_WAREHOUSE.IEX_DAM where TIME_STAMP=:1 and col_attributes=:2", existingEntityRecords)
         # insert the raw data
@@ -40,6 +40,7 @@ def insertIexDamData(appDbConnStr: str, dataSamples: List[IIexDamDataRecord]) ->
 
         dbCur.executemany(sql_insert, [tuple(
             [r[col] for col in keyNames]) for r in dataSamples])
+            
         # commit the changes
         dbConn.commit()
 
