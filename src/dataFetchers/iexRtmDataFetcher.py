@@ -24,8 +24,10 @@ def getIexRtmData(targetFilePath: str) -> List[IIexRtmDataRecord]:
 
     dataSheetDf['data_val'].fillna(0, inplace=True)
     for i in range(len(dataSheetDf['data_val'])):
-        if (type(dataSheetDf['data_val'][i]) != float ) and (type(dataSheetDf['data_val'][i]) != int ):
+        if dataSheetDf['data_val'][i] == '-':
             dataSheetDf['data_val'][i] = 0
+        if (type(dataSheetDf['data_val'][i]) != float ) and (type(dataSheetDf['data_val'][i]) != int ):
+            dataSheetDf['data_val'][i] = float(dataSheetDf['data_val'][i])
     dataSheetDf['data_val'] = dataSheetDf['data_val'].astype('float64')
 
     iexRtmRecords = dataSheetDf.to_dict('records')

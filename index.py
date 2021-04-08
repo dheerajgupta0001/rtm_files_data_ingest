@@ -20,7 +20,7 @@ initConfigs()
 filesSheet = getFileMappings()
 
 startDt = dt.datetime(2021, 3, 31)
-endDt = dt.datetime(2021, 3, 31)
+endDt = dt.datetime(2021, 4, 3)
 
 targetDt = startDt
 while targetDt <= endDt:
