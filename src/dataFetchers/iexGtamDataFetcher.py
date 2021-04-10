@@ -17,6 +17,8 @@ def getIexGtamData(targetFilePath: str) -> List[IIexGtamDataRecord]:
     for i in range(len(dataSheetDf['data_val'])):
         if dataSheetDf['data_val'][i] == '--':
             dataSheetDf['data_val'][i] = 0
+        if (type(dataSheetDf['data_val'][i]) != float ) and (type(dataSheetDf['data_val'][i]) != int ):
+            dataSheetDf['data_val'][i] = float(dataSheetDf['data_val'][i])
     dataSheetDf['data_val'] = dataSheetDf['data_val'].astype('float64')
 
     iexGtamRecords = dataSheetDf.to_dict('records') 

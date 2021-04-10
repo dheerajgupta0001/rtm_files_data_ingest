@@ -10,7 +10,7 @@ def getPxiDamData(targetFilePath: str) -> List[IPxiDamDataRecord]:
 
     dataSheetDf=dataSheetDf.dropna(axis=1,how='all')
     dataSheetDf[['Hrs','Sec']]=dataSheetDf['Time Slot'].str.split('-',expand=True)
-    dataSheetDf['Delivery Date'] = pd.to_datetime(dataSheetDf['Delivery Date'])
+    dataSheetDf['Delivery Date'] = pd.to_datetime(dataSheetDf['Delivery Date'], format='%d-%m-%Y')
     dataSheetDf['Hrs'] = pd.to_datetime(dataSheetDf['Hrs']).dt.time
     new_ind = []
     tms = dataSheetDf['Hrs']
