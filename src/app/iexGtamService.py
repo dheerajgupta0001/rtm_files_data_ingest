@@ -6,7 +6,7 @@ import datetime as dt
 
 
 def iexGtamService(iexGtamFilePath):
-    iexGtamRecords = getIexGtamData(iexGtamFilePath)
+    iexGtamRecords, iexGtamTableRecords = getIexGtamData(iexGtamFilePath)
     measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
     isRawCreationSuccess = measDataRepo.insertIexGtamData(iexGtamRecords)

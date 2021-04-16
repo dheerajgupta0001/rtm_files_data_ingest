@@ -19,8 +19,8 @@ from src.app.wbesPxPxiService import wbesPxPxiService
 initConfigs()
 filesSheet = getFileMappings()
 
-startDt = dt.datetime(2021, 4, 7)
-endDt = dt.datetime(2021, 4, 8)
+startDt = dt.datetime(2021, 4, 9)
+endDt = dt.datetime(2021, 4, 9)
 
 targetDt = startDt
 while targetDt <= endDt:
@@ -30,18 +30,23 @@ while targetDt <= endDt:
         excelFilePath = getExcelFilePath(eachrow, targetDt)
         # if eachrow['file_type'] == 'iex_dam_data':
         #     iexDamService(excelFilePath)
-        # if eachrow['file_type'] == 'iex_gtam_data':
-        #     iexGtamService(excelFilePath)
+        if eachrow['file_type'] == 'iex_gtam_data':
+            try:
+                iexGtamService(excelFilePath)
+            except Exception as ex:
+                print(ex)
+                continue
+                # print("An exception occurred")
         # if eachrow['file_type'] == 'iex_rtm_data':
         #     iexRtmService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_dam_data':
-            pxiDamService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_rtm_data':
-            pxiRtmService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_dam_data':
+        #     pxiDamService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_rtm_data':
+        #     pxiRtmService(excelFilePath)
         # if eachrow['file_type'] == 'wbes_rtm_iex_data':
         #     wbesRtmIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
-            # wbesRtmPxiService(excelFilePath, targetDt)
+        #     wbesRtmPxiService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_px_iex_data':
         #     wbesPxIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_px_pxi_data':
