@@ -28,16 +28,16 @@ while targetDt <= endDt:
     for eachrow in filesSheet:
         print(eachrow['file_type'])
         excelFilePath = getExcelFilePath(eachrow, targetDt)
-        if eachrow['file_type'] == 'iex_dam_data':
-            iexDamService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_dam_data':
+        #     iexDamService(excelFilePath)
         if eachrow['file_type'] == 'iex_gtam_data':
             iexGtamService(excelFilePath)
-        if eachrow['file_type'] == 'iex_rtm_data':
-            iexRtmService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_dam_data':
-            pxiDamService(excelFilePath)
-        if eachrow['file_type'] == 'pxi_rtm_data':
-            pxiRtmService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_rtm_data':
+        #     iexRtmService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_dam_data':
+        #     pxiDamService(excelFilePath)
+        # if eachrow['file_type'] == 'pxi_rtm_data':
+        #     pxiRtmService(excelFilePath)
         # if eachrow['file_type'] == 'wbes_rtm_iex_data':
         #     wbesRtmIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
