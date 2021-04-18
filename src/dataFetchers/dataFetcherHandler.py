@@ -7,8 +7,6 @@ from src.dataFetchers.wbesRtmPxiFetcher import getWbesRtmPxiData
 from src.dataFetchers.pxiRtmDataFetcher import getPxiRtmData
 from src.dataFetchers.wbesPxPxiFetcher import getWbesPxPxiData
 from src.dataFetchers.wbesPxIexFetcher import getWbesPxIexData
-
-
 from src.typeDefs.fileInfo import IFileInfo
 import datetime as dt
 from typing import List

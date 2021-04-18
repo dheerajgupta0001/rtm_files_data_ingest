@@ -19,8 +19,8 @@ from src.app.wbesPxPxiService import wbesPxPxiService
 initConfigs()
 filesSheet = getFileMappings()
 
-startDt = dt.datetime(2021, 4, 6)
-endDt = dt.datetime(2021, 4, 6)
+startDt = dt.datetime(2021, 4, 11)
+endDt = dt.datetime(2021, 4, 11)
 
 targetDt = startDt
 while targetDt <= endDt:
@@ -32,8 +32,8 @@ while targetDt <= endDt:
         #     iexDamService(excelFilePath)
         # if eachrow['file_type'] == 'iex_gtam_data':
         #     iexGtamService(excelFilePath)
-        # if eachrow['file_type'] == 'iex_rtm_data':
-        #     iexRtmService(excelFilePath)
+        if eachrow['file_type'] == 'iex_rtm_data':
+            iexRtmService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_dam_data':
         #     pxiDamService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_rtm_data':
@@ -42,10 +42,10 @@ while targetDt <= endDt:
         #     wbesRtmIexService(excelFilePath, targetDt)
         # if eachrow['file_type'] == 'wbes_rtm_pxi_data':
         #     wbesRtmPxiService(excelFilePath, targetDt)
-        if eachrow['file_type'] == 'wbes_px_iex_data':
-            wbesPxIexService(excelFilePath, targetDt)
-        if eachrow['file_type'] == 'wbes_px_pxi_data':
-            wbesPxPxiService(excelFilePath, targetDt)
+        # if eachrow['file_type'] == 'wbes_px_iex_data':
+        #     wbesPxIexService(excelFilePath, targetDt)
+        # if eachrow['file_type'] == 'wbes_px_pxi_data':
+        #     wbesPxPxiService(excelFilePath, targetDt)
        
-            
+    # targetDt=targetDt+dt.timedelta(days=1)        
     targetDt = addMonths(targetDt, 1)

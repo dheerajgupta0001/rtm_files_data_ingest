@@ -10,7 +10,7 @@ def getIexRtmData(targetFilePath: str) -> List[IIexRtmDataRecord]:
 
     dataSheetDf['Date'].fillna(value=dataSheetDf.loc[0,'Date'], inplace=True)
     dataSheetDf[['Hrs','Sec']]=dataSheetDf['Time Block'].str.split('-',expand=True)
-    dataSheetDf['Date'] = pd.to_datetime(dataSheetDf['Date'])
+    dataSheetDf['Date'] = pd.to_datetime(dataSheetDf['Date'],format='%d-%m-%Y')
     dataSheetDf['Hrs'] = pd.to_datetime(dataSheetDf['Hrs']).dt.time
     new_ind = []
     tms = dataSheetDf['Hrs']
