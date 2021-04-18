@@ -30,10 +30,10 @@ while targetDt <= endDt:
         excelFilePath = getExcelFilePath(eachrow, targetDt)
         # if eachrow['file_type'] == 'iex_dam_data':
         #     iexDamService(excelFilePath)
-        # if eachrow['file_type'] == 'iex_gtam_data':
-        #     iexGtamService(excelFilePath)
-        if eachrow['file_type'] == 'iex_rtm_data':
-            iexRtmService(excelFilePath)
+        if eachrow['file_type'] == 'iex_gtam_data':
+            iexGtamService(excelFilePath)
+        # if eachrow['file_type'] == 'iex_rtm_data':
+        #     iexRtmService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_dam_data':
         #     pxiDamService(excelFilePath)
         # if eachrow['file_type'] == 'pxi_rtm_data':
@@ -47,5 +47,5 @@ while targetDt <= endDt:
         # if eachrow['file_type'] == 'wbes_px_pxi_data':
         #     wbesPxPxiService(excelFilePath, targetDt)
        
-    # targetDt=targetDt+dt.timedelta(days=1)        
-    targetDt = addMonths(targetDt, 1)
+    targetDt=targetDt+dt.timedelta(days=1)        
+    
