@@ -1,6 +1,8 @@
 from typing import List
 from src.typeDefs.iexGtamRecord import IIexGtamDataRecord
 from src.repos.insertIexGtamMetricData import insertIexGtamData
+from src.repos.insertIexGtamDeriveMetricData import insertIexGtamDeriveData
+
 from src.repos.insertIexRtmMetricData import insertIexRtmData
 from src.repos.insertIexDamMetricData import insertIexDamData
 from src.repos.insertPxiDamMetricData import insertPxiDamData
@@ -30,6 +32,13 @@ class MeasDataRepo():
             bool: returns true if process is ok
         """
         return insertIexGtamData(self.appDbConnStr, dataSamples)
+    def insertIexGtamDeriveData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertIexGtamDeriveData(self.appDbConnStr, dataSamples)
+
 
     def insertIexRtmData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
         """inserts a entity metrics time series data into the app db
