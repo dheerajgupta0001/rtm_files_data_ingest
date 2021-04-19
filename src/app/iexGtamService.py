@@ -10,10 +10,15 @@ def iexGtamService(iexGtamFilePath):
     measDataRepo = MeasDataRepo(getJsonConfig()['appDbConnStr'])
 
     isRawCreationSuccess = measDataRepo.insertIexGtamData(iexGtamRecords)
-    isRawCreationSuccess1 = measDataRepo.insertIexGtamDeriveData(iexGtamTableRecords)
+    isderivedCreationSuccess = measDataRepo.insertIexGtamDeriveData(iexGtamTableRecords)
 
-    if isRawCreationSuccess and isRawCreationSuccess1:
-        print("IEX GTAM data insertion SUCCESSFUL")
+    if isRawCreationSuccess:
+        print("IEX GTAM raw data insertion SUCCESSFUL")
     else:
-        print("IEX GTAM data insertion UNSUCCESSFUL")
+        print("IEX GTAM raw data insertion UNSUCCESSFUL")
+
+    if isderivedCreationSuccess:
+        print("IEX GTAM derived data insertion SUCCESSFUL")
+    else:
+        print("IEX GTAM derived data insertion UNSUCCESSFUL")
     return True
