@@ -86,5 +86,6 @@ def getIexGtamData(targetFilePath: str):
         'Lowest Price': 'lowest_price', 'No of Trades_y': 'total_trades',
         'Total Traded Volume (MWh)': 'total_traded_vol'})
     iexGtamTableRecords = df_contract_merged.to_dict('records')
+    
 
     return iexGtamRecords, iexGtamTableRecords
