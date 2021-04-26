@@ -29,23 +29,50 @@ while targetDt <= endDt:
         print(eachrow['file_type'])
         excelFilePath = getExcelFilePath(eachrow, targetDt)
         if eachrow['file_type'] == 'iex_dam_data':
-            iexDamService(excelFilePath)
+            try:
+                iexDamService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'iex_gtam_data':
-            iexGtamService(excelFilePath)
+            try:
+                iexGtamService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'iex_rtm_data':
-            iexRtmService(excelFilePath)
+            try:
+                iexRtmService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'pxi_dam_data':
-            pxiDamService(excelFilePath)
+            try:
+                pxiDamService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'pxi_rtm_data':
-            pxiRtmService(excelFilePath)
+            try:
+                pxiRtmService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'wbes_rtm_iex_data':
-            wbesRtmIexService(excelFilePath, targetDt)
+            try:
+                wbesRtmIexService(excelFilePath, targetDt)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'wbes_rtm_pxi_data':
-            wbesRtmPxiService(excelFilePath, targetDt)
+            try:
+                wbesRtmPxiService(excelFilePath, targetDt)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'wbes_px_iex_data':
-            wbesPxIexService(excelFilePath, targetDt)
+            try:
+                wbesPxIexService(excelFilePath, targetDt)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'wbes_px_pxi_data':
-            wbesPxPxiService(excelFilePath, targetDt)
+            try:
+                wbesPxPxiService(excelFilePath, targetDt)
+            except Exception as ex:
+                print(ex)
        
     targetDt=targetDt+dt.timedelta(days=1)        
     
