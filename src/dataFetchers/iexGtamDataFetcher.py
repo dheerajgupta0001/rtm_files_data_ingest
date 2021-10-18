@@ -20,7 +20,7 @@ def getIexGtamData(targetFilePath: str):
 
     derDfDate = dataSheetDf['Trade Date']
 
-    dataSheetDf.drop(['Contract Type', 'A', 'B', 'Opening Price', 'Closing/Equilibrium Price (Rs/MWh) ', 'Next Best Buy Bid Available',
+    dataSheetDf.drop(['Contract Type', 'A', 'B', 'Opening Price', 'Closing Price (Rs/MWh) ', 'Next Best Buy Bid Available',
                       'Next Best Sell Bid Available', 'Duration', 'Region', 'Total Traded Volume MW'], axis=1, inplace=True)
     dataSheetDf = pd.melt(dataSheetDf, id_vars=[
                           'Trade Date', 'Instrument Name', 'contract_type'])
