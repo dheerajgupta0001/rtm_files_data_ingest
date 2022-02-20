@@ -25,8 +25,8 @@ endDt = dt.datetime(endDt.year,endDt.month,endDt.day)
 startDt = endDt - dt.timedelta(days=1)
 endDt =  startDt
 print(startDt)
-# startDt = dt.datetime(2022, 2, 17)
-# endDt = dt.datetime(2022, 2, 17)
+startDt = dt.datetime(2022, 2, 17)
+endDt = dt.datetime(2022, 2, 17)
 
 targetDt = startDt
 while targetDt <= endDt:
