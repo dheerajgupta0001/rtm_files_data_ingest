@@ -1,10 +1,12 @@
 from typing import List
 from src.typeDefs.iexGtamRecord import IIexGtamDataRecord
+from src.typeDefs.iexGdamRecord import IIexGdamDataRecord
 from src.repos.insertIexGtamMetricData import insertIexGtamData
 from src.repos.insertIexGtamDeriveMetricData import insertIexGtamDeriveData
 
 from src.repos.insertIexRtmMetricData import insertIexRtmData
 from src.repos.insertIexDamMetricData import insertIexDamData
+from src.repos.insertIexGdamMetricData import insertIexGdamData
 from src.repos.insertPxiDamMetricData import insertPxiDamData
 from src.repos.insertPxiRtmMetricData import insertPxiRtmData
 from src.repos.insertWbesRtmIexMetricData import insertWbesRtmIexData
@@ -39,7 +41,6 @@ class MeasDataRepo():
         """
         return insertIexGtamDeriveData(self.appDbConnStr, dataSamples)
 
-
     def insertIexRtmData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
         """inserts a entity metrics time series data into the app db
         Returns:
@@ -53,6 +54,13 @@ class MeasDataRepo():
             bool: returns true if process is ok
         """
         return insertIexDamData(self.appDbConnStr, dataSamples)
+
+    def insertIexGdamData(self, dataSamples: List[IIexGdamDataRecord]) -> bool:
+        """inserts a entity metrics time series data into the app db
+        Returns:
+            bool: returns true if process is ok
+        """
+        return insertIexGdamData(self.appDbConnStr, dataSamples)
 
     def insertPxiDamData(self, dataSamples: List[IIexGtamDataRecord]) -> bool:
         """inserts a entity metrics time series data into the app db

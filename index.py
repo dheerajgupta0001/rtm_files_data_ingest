@@ -4,6 +4,7 @@ from src.dataFetchers.dataFetcherHandler import getExcelFilePath
 from src.utils.addMonths import addMonths
 import datetime as dt
 from src.app.iexDamService import iexDamService
+from src.app.iexGdamService import iexGdamService
 from src.app.iexGtamService import iexGtamService
 from src.app.iexRtmService import iexRtmService
 from src.app.pxiDamService import pxiDamService
@@ -23,8 +24,9 @@ endDt = dt.datetime.now()
 endDt = dt.datetime(endDt.year,endDt.month,endDt.day)
 startDt = endDt - dt.timedelta(days=1)
 endDt =  startDt
-# startDt = dt.datetime(2021, 4, 25)
-# endDt = dt.datetime(2021, 4, 25)
+print(startDt)
+# startDt = dt.datetime(2022, 2, 17)
+# endDt = dt.datetime(2022, 2, 17)
 
 targetDt = startDt
 while targetDt <= endDt:
@@ -32,6 +34,11 @@ while targetDt <= endDt:
     for eachrow in filesSheet:
         print(eachrow['file_type'])
         excelFilePath = getExcelFilePath(eachrow, targetDt)
+        if eachrow['file_type'] == 'iex_gdam_data':
+            try:
+                iexGdamService(excelFilePath)
+            except Exception as ex:
+                print(ex)
         if eachrow['file_type'] == 'iex_dam_data':
             try:
                 iexDamService(excelFilePath)
@@ -47,16 +54,16 @@ while targetDt <= endDt:
                 iexRtmService(excelFilePath)
             except Exception as ex:
                 print(ex)
-        if eachrow['file_type'] == 'pxi_dam_data':
-            try:
-                pxiDamService(excelFilePath)
-            except Exception as ex:
-                print(ex)
-        if eachrow['file_type'] == 'pxi_rtm_data':
-            try:
-                pxiRtmService(excelFilePath)
-            except Exception as ex:
-                print(ex)
+        # if eachrow['file_type'] == 'pxi_dam_data':
+        #     try:
+        #         pxiDamService(excelFilePath)
+        #     except Exception as ex:
+        #         print(ex)
+        # if eachrow['file_type'] == 'pxi_rtm_data':
+        #     try:
+        #         pxiRtmService(excelFilePath)
+        #     except Exception as ex:
+        #         print(ex)
         if eachrow['file_type'] == 'wbes_rtm_iex_data':
             try:
                 wbesRtmIexService(excelFilePath, targetDt)

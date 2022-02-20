@@ -11,6 +11,7 @@ from src.typeDefs.fileInfo import IFileInfo
 import datetime as dt
 from typing import List
 from src.typeDefs.iexDamRecord import IIexDamDataRecord
+from src.typeDefs.iexGdamRecord import IIexGdamDataRecord
 # from utils.getWbesMaxRev import getMaxRTMRevForDate
 import os
 import pandas as pd
@@ -29,6 +30,8 @@ def getExcelFilePath(fileInfo: IFileInfo, targetMonth: dt.datetime) -> str:
 
 def getIexDamDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getIexDamData(targetFilePath)
+def getIexGdamDataHandler(targetFilePath: str) -> List[IIexGdamDataRecord]:
+    return getIexGdamData(targetFilePath)
 
 def getIexGtamDataHandler(targetFilePath: str) -> List[IIexDamDataRecord]:
     return getIexGtamData(targetFilePath)
